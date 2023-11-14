@@ -20,14 +20,15 @@ void setup()
 {
   Serial.begin(9600);   // Initiate a serial communication
   SPI.begin();      // Initiate  SPI bus
-  mfrc522.PCD_Init();   // Initiate MFRC522
-  Serial.println("   READY TO READ RFID");
   pinMode(4, OUTPUT);
   pinMode(5, OUTPUT);
 }
 
 void loop() 
 {
+  delay(100);
+  mfrc522.PCD_Init();   // Initiate MFRC522
+  Serial.println("   READY TO READ RFID");
   // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
   {
@@ -67,8 +68,4 @@ void loop()
     digitalWrite(4, LOW);
     digitalWrite(5, HIGH);
   }
-
-  else  {
-    return;
-  }
- } 
+} 
